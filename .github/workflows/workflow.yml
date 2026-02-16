@@ -1,0 +1,26 @@
+name: workflow.yml
+on:
+  workflow_dispatch:
+
+
+jobs:
+  ssh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone
+        uses: actions/checkout@v4
+
+      - name: sshx
+        run: |
+          curl -sSf https://sshx.io/get | sh
+          sshx &
+      - name: gmssh
+        run: |
+          DATA_DIR="$HOME/gmssh_data" && mkdir -p "$DATA_DIR/config" "$DATA_DIR/logs" && docker pull docker-rep.gmssh.com/gmssh/gs-main-x86:latest && docker run -d --name gm-service-latest -p 9999:80 --restart always docker-rep.gmssh.com/gmssh/gs-main-x86:latest && docker cp gm-service-latest:/app/config/config.json "$DATA_DIR/config" && docker stop gm-service-latest && docker rm gm-service-latest && docker run -d --name gm-service -p 9999:80 --restart always -v "$DATA_DIR/logs:/gs_logs" -v "$DATA_DIR/config:/app/config" docker-rep.gmssh.com/gmssh/gs-main-x86:latest
+
+      - name: clouflared
+        run: |        
+          docker run -d --network host cloudflare/cloudflared:latest tunnel --no-autoupdate run --token eyJhIjoiNWVkOTI5OGJjNTgyZWZiOWVjNDRiZjAzYWQ2ZDEzNTkiLCJ0IjoiMzM4ZjgwODEtZTllZi00MDk0LTlkMDEtMTI5ZDJkOGRmZDJhIiwicyI6Ik1EUTVZalV5TnpFdE1UZGtNQzAwWmpJM0xXSmlNV1F0WVRkaU9XSm1ZamszTUdFNCJ9
+      - name: sleep
+        run: |
+          sleep 19800
