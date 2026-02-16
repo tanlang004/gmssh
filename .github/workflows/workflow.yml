@@ -16,7 +16,7 @@ jobs:
           sshx &
       - name: gmssh
         run: |
-          DATA_DIR="$HOME/gmssh_data" && mkdir -p "$DATA_DIR/config" "$DATA_DIR/logs" && docker pull docker-rep.gmssh.com/gmssh/gs-main-x86:latest && docker run -d --name gm-service-latest -p 9999:80 --restart always docker-rep.gmssh.com/gmssh/gs-main-x86:latest && docker cp gm-service-latest:/app/config/config.json "$DATA_DIR/config" && docker stop gm-service-latest && docker rm gm-service-latest && docker run -d --name gm-service -p 9999:80 --restart always -v "$DATA_DIR/logs:/gs_logs" -v "$DATA_DIR/config:/app/config" docker-rep.gmssh.com/gmssh/gs-main-x86:latest
+          DATA_DIR="$HOME/gmssh_data" && mkdir -p "$DATA_DIR/config" "$DATA_DIR/logs" && docker pull docker-rep.gmssh.com/gmssh/gs-main-x86:latest && docker run -d --network host --name gm-service-latest -p 9999:80 --restart always docker-rep.gmssh.com/gmssh/gs-main-x86:latest && docker cp gm-service-latest:/app/config/config.json "$DATA_DIR/config" && docker stop gm-service-latest && docker rm gm-service-latest && docker run -d --network host --name gm-service -p 9999:80 --restart always -v "$DATA_DIR/logs:/gs_logs" -v "$DATA_DIR/config:/app/config" docker-rep.gmssh.com/gmssh/gs-main-x86:latest
 
       - name: clouflared
         run: |        
