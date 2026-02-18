@@ -8,7 +8,7 @@ echo 'deb [signed-by=/usr/share/keyrings/cloudflare-public-v2.gpg] https://pkg.c
 # install cloud flared
 sudo apt-get update && sudo apt-get install cloudflared
 
-cloudflared tunnel run --token eyJhIjoiNWVkOTI5OGJjNTgyZWZiOWVjNDRiZjAzYWQ2ZDEzNTkiLCJ0IjoiM2MwZjhiN2EtMjUzNC00M2I5LThkZGUtMzY2ZWJhMDk4MmRiIiwicyI6IllqUXpORFV3TWpjdE0yWTRNQzAwWlRKbExUZzBOVGd0T1RVM05EWTROVE15TW1aaiJ9
+sudo cloudflared service install eyJhIjoiNWVkOTI5OGJjNTgyZWZiOWVjNDRiZjAzYWQ2ZDEzNTkiLCJ0IjoiM2MwZjhiN2EtMjUzNC00M2I5LThkZGUtMzY2ZWJhMDk4MmRiIiwicyI6IllqUXpORFV3TWpjdE0yWTRNQzAwWlRKbExUZzBOVGd0T1RVM05EWTROVE15TW1aaiJ9
 apt install nodejs npm -y
 wget https://raw.githubusercontent.com/vevc/nodejs-vless/refs/heads/main/app.js
 wget https://raw.githubusercontent.com/vevc/nodejs-vless/refs/heads/main/package.json
