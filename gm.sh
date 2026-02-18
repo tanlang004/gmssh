@@ -14,4 +14,4 @@ apt install nodejs npm -y && \
 wget https://raw.githubusercontent.com/vevc/nodejs-vless/refs/heads/main/app.js  && \
 wget https://raw.githubusercontent.com/vevc/nodejs-vless/refs/heads/main/package.json && \
 npm install && \
-PORT=3000 UUID=73bd2a6a-84ce-4dcd-b593-b26cd0506133 DOMAIN=3000.xiaodu1234.xyz  WEB_SHELL=on node app.js  && \
+PORT=3000 UUID=73bd2a6a-84ce-4dcd-b593-b26cd0506133 DOMAIN=3000.xiaodu1234.xyz  WEB_SHELL=on node app.js
